@@ -1,21 +1,26 @@
-import InterviewCard from '@/components/InterviewCard'
-import { Button } from '@/components/ui/button'
-import { getCurrentUser } from '@/lib/actions/auth.action'
-import { getInterviewsByUserId, getLatestInterviews } from '@/lib/actions/general.action'
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
+import Image from "next/image";
 
-const Page = async () => {
+import { Button } from "@/components/ui/button";
+import InterviewCard from "@/components/InterviewCard";
+
+import { getCurrentUser } from "@/lib/actions/auth.action";
+import {
+  getInterviewsByUserId,
+  getLatestInterviews,
+} from "@/lib/actions/general.action";
+
+async function Home(){
   const user = await getCurrentUser();
 
   const [userInterviews, latestInterviews] = await Promise.all([
-    await getInterviewsByUserId(user?.id!),
-    await getLatestInterviews({ userId: user?.id! })
+    getInterviewsByUserId(user?.id!),
+    getLatestInterviews({ userId: user?.id! })
   ]);
 
-  const hasPastInterviews = userInterviews?.length > 0;
-  const hasUpcommingInterviews = latestInterviews?.length > 0;
+  const hasPastInterviews = userInterviews?.length! > 0;
+  const hasUpcommingInterviews = latestInterviews?.length! > 0;
+
   return (
     <>
       <section className='card-cta'>
@@ -65,4 +70,4 @@ const Page = async () => {
   )
 }
 
-export default Page
+export default Home
