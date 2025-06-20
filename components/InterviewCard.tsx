@@ -9,7 +9,7 @@ const InterviewCard = ({ id, userId, role, type, techstack, createdAt }: Intervi
   const feedback = null as Feedback | null;
   const normalizedType = /mix/gi.test(type) ?  'Mixed' : type;
   const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format('MMM D, YYYY');
-  
+
   return (
     <div className='card-border w-[360px] max-sm:w-full min-h-96'>
       <div className="card-interview">
@@ -53,8 +53,9 @@ const InterviewCard = ({ id, userId, role, type, techstack, createdAt }: Intervi
           <DisplayTechIcons techStack={techstack} />
 
           <Button className='btn-primary'>
-            <Link href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`} />
-            {feedback ? 'Check Feeback' : 'View Interview'}
+            <Link href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`}>
+              {feedback ? 'Check Feeback' : 'View Interview'}
+            </Link>
           </Button>
         </div>
       </div>

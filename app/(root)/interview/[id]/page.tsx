@@ -6,18 +6,12 @@ import { getRandomInterviewCover } from '@/lib/utils';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
-interface RouteParams {
-  params: {
-    id: string;
-    [key: string]: string;
-  };
-}
-
-const Page = async ({ params }: RouteParams) => {
+const InterviewDetails = async ({ params }: RouteParams) => {
   const { id } = params;
+  console.log('id', id)
   const user = await getCurrentUser();
+  
   const interview = await getInterviewById(id);
-
   if (!interview) redirect('/')
 
   return (
@@ -54,4 +48,4 @@ const Page = async ({ params }: RouteParams) => {
   )
 }
 
-export default Page
+export default InterviewDetails

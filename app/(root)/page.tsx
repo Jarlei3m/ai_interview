@@ -16,7 +16,8 @@ const Page = async () => {
 
   const hasPastInterviews = userInterviews?.length > 0;
   const hasUpcommingInterviews = latestInterviews?.length > 0;
-
+  console.log('userInterviews', userInterviews);
+  console.log('latestInterviews', latestInterviews);
   return (
     <>
       <section className='card-cta'>
